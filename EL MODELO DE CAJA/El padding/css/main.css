@@ -1,0 +1,141 @@
+/*
+contenido: #79FF52
+fuente: #DDE84D
+general: #FFE261
+equivalentes: #E8AC4D
+homero: #FF9059
+*/
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+html{
+	font-size: 100%;
+}
+body{
+	width:70%;
+	margin:0 auto;
+}
+div{
+	border: 1px solid gray;
+}
+h1, h2, h3, h4, h5, h6{
+	font-family: "Times New Roman",Times, serif;
+	text-align: center;
+	letter-spacing: 4px;
+	color:white;
+}
+h1{
+	font-size: 3rem;
+}
+p{
+	font-size: 1.5rem;
+	line-height: 1.8rem;
+	margin:1rem;
+	border-top: 1px solid black;
+	border-bottom: 5px dashed black;
+	padding-top: 1rem;
+	padding-bottom: .5rem;
+	padding-left: 1rem;
+	padding-right: 0.5rem;
+}
+a:link{
+	color:white;
+	background-color:navy;
+	text-decoration: none;
+}
+a:visited{
+	color:yellow;
+	background-color:navy;
+	text-decoration: none;
+}
+a:hover{
+	color:navy;
+	background-color:white;
+	text-decoration: none;
+}
+a:active{
+	color:white;
+	background-color:red;
+	text-decoration: none;
+}
+ol{
+	margin:0 1.6em;
+}
+img{
+	padding: 0.5rem;
+	border:0.5rem orange solid;
+	margin:1rem;
+}
+/***************
+IDENTIFICADORES
+****************/
+#contenido{
+	background-color: #79FF52;
+}
+#general{
+	background-color: #FFE261;
+}
+#equivalentes{
+	background-color:  #E8AC4D;
+}
+#homero{
+	background-color: #E8AC4D;
+}
+#origenes{
+	background-color: #FF9059;
+}
+#nacimiento{
+	background-color: #FF9059;
+
+}
+/************
+C L A S E S
+*************/
+.rojo{
+	color:red;
+	font-weight: bold;
+	font-style: italic;
+}
+.subrayado{
+	text-decoration: underline;
+}
+/**************
+COMPUESTOS
+***************/
+#origenes a{
+	background-color: white;
+	color:black;
+}
+h2.rojo{
+	text-decoration: underline;
+}
+p.uno{
+	border-style: dashed;
+	border-color: red;
+	border-width: 2px;
+	border-top-left-radius: 25px;
+}
+p.dos{
+	border-style: dashed dotted;
+	border-color: red blue;
+	border-width: 2px 4px;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 50px;
+}
+p.tres{
+	border-style: dashed dotted solid;
+	border-color: red blue orange;
+	border-width: 2px 4px 6px;
+	border-top-left-radius: 25px;
+	border-top-right-radius: 50px;
+	border-bottom-right-radius: 50px;
+}
+p.cuatro{
+	border-style: dashed dotted solid groove;
+	border-color: red blue orange black;
+	border-width: 2px 4px 6px 8px;
+	border-radius: 30px;
+
+}
