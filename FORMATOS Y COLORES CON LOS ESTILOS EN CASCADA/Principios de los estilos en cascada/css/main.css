@@ -1,0 +1,26 @@
+body{
+	width:70%;
+	margin:0 auto;
+}
+div{
+	border: 1px solid gray;
+}
+#contenido{
+	background-color: yellow;
+}
+#general{
+	background-color: pink;
+}
+#equivalentes{
+	background-color: orange;
+}
+#homero{
+	background-color: gray;
+}
+#origenes{
+	background-color: white;
+}
+#nacimiento{
+	background-color: cyan;
+
+}
