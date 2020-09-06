@@ -1,0 +1,132 @@
+/*Elementos de neutralidad*/
+header, article, footer, section, nav, aside{
+	display:block;
+	margin:0;
+	padding:0;
+}
+html{
+	background:#FFF;
+	margin:0;
+	padding:0;
+}
+body{
+	width:960px;
+	background:#ff6;
+	margin:0 auto;
+	font-family:Verdana, Geneva, sans-serif;
+}
+p, h1, h2, h3{
+	margin:0;
+	padding:0;
+}
+/*Etiquetas estructurales*/
+header{
+	height:90px;
+	background:#76a68b;
+}
+article{
+	background:#bcd5b0;
+}
+footer{
+	height:60px;
+	background:#898c70;
+}
+nav{
+	font_size:.7em;
+	color:#f2e3b6;
+	text-align:center;
+	paddin-top:1em;
+}
+/*Estilos de fuente*/
+h1{
+	font-size:2.2em;
+	color:#FFF;
+ 	text-align: center;
+}
+h2{
+	font-size:1.8em;
+	color:#f2e3b6;
+ 	text-align: center;
+	padding-top:.2em;
+}
+h3{
+	font-size:.8em;
+	color:#f2e3b6;
+ 	text-align: center;
+}
+	
+p{
+	font-size:1em;
+	padding-top:1em;
+	padding-left:1em;
+	padding-right:1em;
+	line-height:1.2em;
+}
+ul, li{
+	display:inline;
+}
+a{
+	text-decoration:none;
+	font-size:0.8em;
+	color:#f2e3b6;
+	text-align:center;
+}
+ol{
+	list-style-image: url(star_bullet.gif);
+}
+/*Clases*/
+.izq{
+	float:left;
+	margin-right:1em;
+}
+.der{
+	float:right;
+	margin-left:1em;
+}
+/*Selectores de atributos*/
+a[title=Dios]{
+	color:red;
+}
+a[title=Diosa]{
+	color:pink;
+}
+a[title=Semidios]{
+	color:blue;
+}
+a[href^="http://"]{
+	color:blue;
+	font-size:1em;
+}
+a[href$=".pdf"]{
+	color:blue;
+	font-size:1em;
+	padding-right:50px;
+	background:url(../imagenes/pdf_icon.gif) no-repeat right center;
+}
+img[alt~="dibujo"]{
+	border:solid green 1px;
+	padding:.5em;
+}
+img[alt~="estatua"]{
+	border:solid red 1px;
+	padding:.5em;
+}
+/*Selectores hijos*/
+article > h2{
+	padding-top:.5em;
+	text-align:left;
+	font-size:1.8em;
+	margin-left:10px;
+}
+/*Selectores hermanos general*/
+h2 ~ p{
+	color:#006;
+	line-height:1.6em;
+}
+/*Selectores hermanos adyacente*/
+h1 + h2{
+	font-weight:bold;
+	letter-spacing:.4em;
+}
+
+

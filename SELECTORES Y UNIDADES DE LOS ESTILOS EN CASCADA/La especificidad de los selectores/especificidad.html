@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Especificidad</title>
+	<meta charset="utf-8">
+	<style>
+		/*0,0,0,2*/
+		body h1{
+			color:green;
+		}
+		/*0,0,0,1*/
+		h1{
+			color:red;
+		}
+		/*0,0,1,1*/
+		h2.uva{ color:purple; }
+		/*0,0,0,1*/
+		h2{color:orange;}
+
+		/*0,0,0,4*/
+		html > body > ul > li{color:maroon;}
+
+		/*0,1,0,0*/
+		#respuesta{
+			color:red;
+		}
+
+	</style>
+</head>
+<body>
+<h1>Este es el título</h1>
+<h2 class="uva">Este es un subtítulo</h2>
+<ul>
+	<li>Uno</li>
+	<li>Dos</li>
+	<li id="respuesta">Tres</li>
+</ul>
+</body>
+</html>

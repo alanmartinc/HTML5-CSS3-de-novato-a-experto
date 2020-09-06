@@ -1,0 +1,76 @@
+/*
+contenido: #79FF52
+fuente: #DDE84D
+general: #FFE261
+equivalentes: #E8AC4D
+homero: #FF9059
+*/
+body{
+	width:70%;
+	margin:0 auto;
+}
+div{
+	border: 1px solid gray;
+}
+h1{
+	font-family: "Times New Roman",Times, serif;
+	/*font-family: Arial, Helvetica, sans-serif;*/
+	/*font-family: "Courier New", Courier, monospace;*/
+	font-size: 3em;
+	text-align: center;
+	letter-spacing: 4px;
+	color:white;
+}
+p{
+	line-height: 1.5em;
+}
+a:link{
+	color:white;
+	background-color:navy;
+	text-decoration: none;
+}
+a:visited{
+	color:yellow;
+	background-color:navy;
+	text-decoration: none;
+}
+a:hover{
+	color:navy;
+	background-color:white;
+	text-decoration: none;
+}
+a:active{
+	color:white;
+	background-color:red;
+	text-decoration: none;
+}
+#contenido{
+	background-color: #79FF52;
+}
+#general{
+	background-color: #FFE261;
+}
+#equivalentes{
+	background-color:  #E8AC4D;
+}
+#homero{
+	background-color: #E8AC4D;
+}
+#origenes{
+	background-color: #FF9059;
+}
+#nacimiento{
+	background-color: #FF9059;
+
+}
+/************
+C L A S E S
+*************/
+.rojo{
+	color:red;
+	font-weight: bold;
+	font-style: italic;
+}
+.subrayado{
+	text-decoration: underline;
+}
