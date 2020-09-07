@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Position</title>
+	<meta charset="utf-8">
+	<style>
+		div{
+			width: 160px;
+			height: 196px;	
+			background-color: orange;
+			padding: 10px;
+			margin:10px;
+		}
+		#uno{
+			position: absolute;
+			left:10px;
+			top:10px;
+			background-image: url(imagenes/afrodita160x196.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		#dos{
+			position: absolute;
+			left:200px;
+			top:250px;
+			background-image: url(imagenes/atenea160x196.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		#tres{
+			position: absolute;
+			left:380px;
+			top:500px;
+			background-image: url(imagenes/poseidon160x196.jpg);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		#contenido{
+			position: relative;
+			width:700px;
+			height: 700px;
+			background-color: orange;
+			margin:0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="contenido">
+		<div id="uno">Caja 1</div>
+		<div id="dos">Caja 2</div>
+		<div id="tres">Caja 3</div>
+	</div>
+</body>
+</html>
