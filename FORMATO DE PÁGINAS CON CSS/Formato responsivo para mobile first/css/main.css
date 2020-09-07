@@ -1,0 +1,144 @@
+/************
+NEUTRALIDAD
+*************/
+*{
+	margin: 0;
+	padding: 0;
+}
+html, body{
+	background-color: white;
+}
+body{
+	background-image: url(../imagenes/fondos/espacial.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	height: 800px;
+	color: #ecece7;
+}
+/**************
+ESTILOS
+***************/
+p{
+	padding-bottom: 10px;
+	font-size: 1.2em;
+}
+h1{
+	padding-top: 5px;
+	text-align: center;
+	letter-spacing: 0.8em;
+}
+h2{
+	padding: 5px;
+	text-align: center;
+}
+h3{
+	text-align: center;
+	font-size: 0.8em;
+}
+/**************
+ESTRUCTURA
+***************/
+#contenido{
+	width:80%;
+	max-width: 1024px;
+	min-width: 480px;
+	height: 660px;
+	background-color: #ff0;
+	margin:0 auto;
+}
+#encabezado{
+	height: 80px;
+	background-color: #0f3d48;
+}
+#articulo{
+	height: 560px;
+	background-color: #174c5b;
+}
+#piePagina{
+	height: 20px;
+	background-color: #366774;
+}
+#izq{
+	float: left;
+	width:56%;
+	height: 560px;
+	margin: 0 2% 0 2%;
+}
+#der{
+	float: right;
+	width: 36%;
+	height: 560px;
+	margin: 0 2% 0 2%;
+}
+/************
+CLASES
+*************/
+.izquierda{
+	float: left;
+	margin:10px;
+	width:35%;
+}
+.derecha{
+	float: right;
+	margin:10px;
+	width:35%;
+}
+/****************
+TELEFONOS
+*****************/
+@media only screen and (max-width:460px){
+	#contenedor{
+		width:90%;
+		height: auto;
+	}
+	#izq, #der{
+		width:90%;
+		height: auto;
+		clear:both;
+	}
+	#articulo{
+		height: 1700px;
+	}
+}
+/****************
+TABLETA
+*****************/
+@media only screen and (min-width:461px) and (max-width:768px){
+	#contenido{
+		width:90%;
+		height: auto;
+	}
+	#izq, #der{
+		width:90%;
+		height: auto;
+		clear:both;
+	}
+	#articulo{
+		height: 1000px;
+	}
+	p{
+		font-size: 1em;
+		line-height: 1.4em;
+	}
+	h1{
+		font-size: 1.5em;
+	}
+	h2{
+		font-size: 1.2em;
+	}
+	#encabezado{
+		height: 60px;
+	}
+}
+/****************
+COMPUTADORA
+*****************/
+@media only screen and (min-width:769px){
+	#contenido{
+		width:80%;
+		height: 660px;
+		background-color: #ff0;
+		margin:0 auto;
+	}
+}

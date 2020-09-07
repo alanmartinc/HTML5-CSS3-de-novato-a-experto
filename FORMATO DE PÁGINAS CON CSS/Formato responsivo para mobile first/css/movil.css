@@ -1,0 +1,12 @@
+#contenedor{
+	width:90%;
+	height: auto;
+}
+#izq, #der{
+	width:90%;
+	height: auto;
+	clear:both;
+}
+#articulo{
+	height: 1700px;
+}
