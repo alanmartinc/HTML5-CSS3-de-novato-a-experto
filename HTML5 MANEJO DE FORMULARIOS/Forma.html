@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Forma</title>
+	
+	<style>
+		:required {
+			background: #fdd;
+		}
+		:valid {
+			background: #dfd;
+		}
+	</style>
+	
+</head>
+<body>
+	<form action="">
+		Código Postal (Cinco digitos del 0 al 9): <input type="text" pattern="^[0-9]{5}$" autofocus required>
+		<br>
+		Campo Email: <input type="email" placeholder="nombre@sitio.com">
+		<br>
+		Campo URL: <input type="url" placeholder="http://sitio.com">
+		<br>
+		Campo Tel: <input type="tel" placeholder="XX-XXXX-XXXX">
+		<br>
+		Campo Numérico: <input type="number" min="18" max="40" value="18" step="2">
+		<br>
+		Rango: <input type="range" min="0" max="100" step="5" value="50">
+		<br>
+		Hora: <input type="time">
+		<br>
+		Fecha: <input type="date">
+		<br>
+		Fecha y hora: <input type="datetime">
+		<br>
+		Fecha y hora local: <input type="datetime-local">
+		<br>
+		Mes: <input type="month">
+		<br>
+		Semana: <input type="week">
+		<br>
+		Color: <input type="color">
+		<br>
+	  <input type="submit">
+	</form>
+</body>
+</html>
