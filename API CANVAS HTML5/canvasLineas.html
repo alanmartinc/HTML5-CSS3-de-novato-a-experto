@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Canvas</title>
+	
+	<style>
+		#canvas1 {
+			border: dashed 3px black;
+			background: green;
+		}
+	</style>
+	
+	<script>
+		window.onload = function() {
+			var canvas = document.getElementById("canvas1");
+			if(canvas && canvas.getContext) {
+				var ctx = canvas.getContext("2d");
+				if(ctx) {
+					// Descripcion de lineas
+					ctx.lineWidth = 25;
+					ctx.strokeStyle = "yellow";
+					
+					// Dibujar linea
+					ctx.lineCap = "round"; // square, butt
+					ctx.beginPath();
+					ctx.moveTo(50,50);
+					ctx.lineTo(450,50);
+					ctx.stroke();
+					
+					ctx.lineJoin = "bevel";
+					ctx.beginPath();
+					ctx.moveTo(175,150);
+					ctx.lineTo(225,50);
+					ctx.lineTo(275,150);
+					ctx.stroke();
+				} else {
+					alert("Error al crear el contexto");
+				}
+			}
+		}
+	</script>
+	
+</head>
+<body>
+	<h1>Conceptos básicos de Canvas</h1>
+	
+	<canvas id="canvas1" width="500px" height="300px">
+		Tu navegador no soporta el CANVAS
+	</canvas>
+</body>
+</html>

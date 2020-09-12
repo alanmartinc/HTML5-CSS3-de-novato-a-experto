@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Canvas</title>
+	
+	<style>
+		#canvas1 {
+			border: dashed 3px black;
+			background: green;
+		}
+	</style>
+	
+	<script>
+		window.onload = function() {
+			var canvas = document.getElementById("canvas1");
+			if(canvas && canvas.getContext) {
+				var ctx = canvas.getContext("2d");
+				if(ctx) {
+					// Configuracion
+					ctx.lineWidth = 10;
+					ctx.strokeStyle = "red";
+					ctx.fillStyle = "yellow";
+					
+					// Curva bezier
+					ctx.beginPath();
+					ctx.moveTo(50,200);
+					ctx.bezierCurveTo(50,100, 200,100, 200,150);
+					ctx.stroke();
+					
+					// Primer punto ancla
+					ctx.fillRect(50,200,5,5);
+					// Segundo punto ancla
+					ctx.fillRect(50,100,5,5);
+					// Tercer punto ancla
+					ctx.fillRect(200,100,5,5);
+					// Cuarto punto ancla
+					ctx.fillRect(200,150,5,5);
+					
+					// Cuvas cuadraticas
+					ctx.beginPath();
+					ctx.moveTo(300,200);
+					ctx.quadraticCurveTo(400,100, 450,150);
+					ctx.stroke();
+					
+					// Primer punto ancla
+					ctx.fillRect(300,200,5,5);
+					// Segundo punto ancla
+					ctx.fillRect(400,100,5,5);
+					// Tercer punto ancla
+					ctx.fillRect(450,150,5,5);
+				} else {
+					alert("Error al crear el contexto");
+				}
+			}
+		}
+	</script>
+	
+</head>
+<body>
+	<h1>Canvas curvas BEZIER y CUADRATICAS</h1>
+	
+	<canvas id="canvas1" width="500px" height="300px">
+		Tu navegador no soporta el CANVAS
+	</canvas>
+</body>
+</html>
