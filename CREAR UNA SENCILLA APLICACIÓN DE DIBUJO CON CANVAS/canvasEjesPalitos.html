@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Canvas</title>
+	
+	<style>
+		#canvas1 {
+			border: dashed 3px black;
+			background: white;
+		}
+	</style>
+	
+	<script>
+		window.onload = function() {
+			var canvas = document.getElementById("canvas1");
+			if(canvas && canvas.getContext) {
+				var ctx = canvas.getContext("2d");
+				if(ctx) {
+					var lon = 15;
+					var margen = lon*3;
+					var origenX = margen;
+					var origenY = canvas.height - margen;
+					var finX = canvas.width - margen;
+					var finY = margen;
+					var palitosX = Math.floor((finX - origenX) / lon);
+					var palitosY = Math.floor((origenY - finY) / lon);
+					var lineaColor = "navy";
+					
+					function pintaGrid(disX, disY, color) {
+
+						ctx.strokeStyle = color;
+						ctx.lineWidth = 0.5;
+
+						for(var i = disX + 0.5; i < canvas.width; i += disX) {
+							ctx.beginPath();
+							ctx.moveTo(i, 0);
+							ctx.lineTo(i, ctx.canvas.height);
+							ctx.stroke();
+						}
+
+						for(var i = disY + 0.5; i < canvas.height; i += disY) {
+							ctx.beginPath();
+							ctx.moveTo(0, i);
+							ctx.lineTo(ctx.canvas.width, i);
+							ctx.stroke();
+						}
+					}
+					
+					function pintaEjes(){
+						ctx.lineWidth = 0.5;
+						ctx.strokeStyle = lineaColor;
+						ctx.beginPath();
+						ctx.moveTo(origenX, origenY);
+						ctx.lineTo(finX, origenY);
+						ctx.stroke();
+
+						ctx.beginPath();
+						ctx.moveTo(origenX, origenY);
+						ctx.lineTo(origenX, finY);
+						ctx.stroke();
+					}
+					
+					function pintaPalitos(){
+						for(var i = 1; i < palitosX; i++){
+							if(i % 5 == 0){
+								palitoLon = lon;
+							} else {
+								palitoLon = lon / 2;
+							}
+							ctx.beginPath();
+							ctx.moveTo(origenX + i * lon, origenY);
+							ctx.lineTo(origenX + i * lon, origenY + palitoLon);
+							ctx.stroke();
+						}
+					
+						for(var i = 1; i < palitosY; i++){
+							if(i % 5 == 0){
+								palitoLon = lon;
+							} else {
+								palitoLon = lon / 2;
+							}
+							ctx.beginPath();
+							ctx.moveTo(origenX - palitoLon, origenY - i * lon);
+							ctx.lineTo(origenX, origenY - i * lon);
+							ctx.stroke();
+						}
+					}
+					
+					// Funcion
+					pintaGrid(lon,lon, "gray");
+					pintaEjes();
+					pintaPalitos();
+					
+				} else {
+					alert("Error al crear el contexto");
+				}
+			}
+		}
+	</script>
+	
+</head>
+<body>
+	<h1>Ejes en el Canvas</h1>
+	
+	<canvas id="canvas1" width="500px" height="300px">
+		Tu navegador no soporta el CANVAS
+	</canvas>
+</body>
+</html>
