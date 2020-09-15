@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Canvas</title>
+	
+	<style>
+		body {
+			width: 960px;
+			margin: 0 auto;
+		}
+		h1 {
+			text-align: center;
+		}
+		#canvas1 {
+			border: dotted 2px black;
+			background: green;
+		}
+	</style>
+	
+	<script>
+		var ctx, canvas;
+		var colorAtras = "blue";
+		
+		function Carta(x, y, ancho, largo, info){
+			this.x = x;
+			this.y = y;
+			this.ancho = ancho;
+			this.largo = largo;
+			this.info = info;
+			this.dibuja = dibujaCarta;
+		}
+		
+		function dibujaCarta(){
+			ctx.fillStyle = colorAtras;
+			ctx.fillRect(this.x, this.y, this.ancho, this.largo);
+		}
+		
+		window.onload = function() {
+			canvas = document.getElementById("canvas1");
+			if(canvas && canvas.getContext) {
+				ctx = canvas.getContext("2d");
+				if(ctx) {
+					
+				} else {
+					alert("Error al crear el contexto");
+				}
+			}
+		}
+	</script>
+	
+</head>
+<body>
+	<h1>Memoria Canvas</h1>
+	
+	<canvas id="canvas1" width="960px" height="300px">
+		Tu navegador no soporta el CANVAS
+	</canvas>
+</body>
+</html>
