@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Canvas</title>
+	
+	<style>
+		body {
+			width: 960px;
+			margin: 0 auto;
+		}
+		h1 {
+			text-align: center;
+		}
+		#canvas1 {
+			border: dotted 2px black;
+			background: green;
+		}
+	</style>
+	
+	<script>
+		var ctx, canvas;
+        var primerCarta = true;
+        var cartaPrimera, cartaSegunda;
+        var colorDelante = "yellow";
+		var colorAtras = "blue";
+        var colorCanvas = "green";
+		var inicioX = 45;
+		var inicioY = 50;
+		var cartaMargen = 30;
+		var cartaLon = 30;
+		var cartaAncho = 100;
+		var cartaLargo = 140;
+		var cartas_array = new Array();
+        var iguales = false;
+        var cartas = 0;
+		var pares = [ ["1.jpg", "1.jpg"], ["2.jpg", "2.jpg"], ["3.jpg", "3.jpg"], ["4.jpg", "4.jpg"], ["5.jpg", "5.jpg"], ["6.jpg", "6.jpg"], ["7.jpg", "7.jpg"] ];
+		
+		function Carta(x, y, ancho, largo, img, info){
+			this.x = x;
+			this.y = y;
+			this.ancho = ancho;
+			this.largo = largo;
+			this.info = info;
+			this.img = img;
+			this.dibuja = dibujaCarta;
+		}
+		
+		function dibujaCarta(){
+			ctx.fillStyle = colorAtras;
+			ctx.fillRect(this.x, this.y, this.ancho, this.largo);
+		}
+
+		function tablero(){
+			var i;
+			var carta;
+			var x = inicioX;
+			var y = inicioY;
+
+			for(i=0; i<pares.length; i++){
+				img = "img/"+pares[i][0];
+				carta = new Carta(x, y, cartaAncho, cartaLargo, img, i);
+				cartas_array.push(carta);
+				carta.dibuja();
+
+				img = "img/"+pares[i][1];
+				carta = new Carta(x, y+cartaLargo+cartaMargen, cartaAncho, cartaLargo, img, i);
+				cartas_array.push(carta);
+				carta.dibuja();
+
+				x += cartaAncho + cartaMargen;
+			}
+		}
+
+		function barajear(){
+			var i, j, k;
+			var temporalInfo, temporalImg;
+			var lon = cartas_array.length;
+
+			for(j=0; j<lon*3; j++){
+				i = Math.floor(Math.random()*lon);
+				k = Math.floor(Math.random()*lon);
+
+				temporalInfo = cartas_array[i].info;
+				temporalImg = cartas_array[i].img;
+
+				cartas_array[i].info = cartas_array[k].info;
+				cartas_array[i].img = cartas_array[k].img;
+
+				cartas_array[k].info = temporalInfo;
+				cartas_array[k].img = temporalImg;
+			}
+		}
+
+		function ajusta(xx, yy){
+			var posCanvas = canvas.getBoundingClientRect();
+			var x = xx - posCanvas.left;
+			var y = yy - posCanvas.top;
+			return {x:x, y:y}
+		}
+
+		function selecciona(e){
+			var pos = ajusta(e.clientX, e.clientY);
+			for(var i=0; i<cartas_array.length; i++){
+				var carta = cartas_array[i];
+				if(carta.x > 0){
+					if((pos.x > carta.x) && (pos.x < carta.x + carta.ancho) && (pos.y > carta.y) && (pos.y < carta.y + carta.largo)){
+						if((primerCarta ) || (i != cartaPrimera)) break;	
+					}
+				}
+			}
+			if(i < cartas_array.length){
+				if(primerCarta){
+                    cartaPrimera = i;
+                    primerCarta = false;
+                    pinta(carta);
+                } else {
+                    cartaSegunda = i;
+                    pinta(carta);
+                    primerCarta = true;
+                    if(cartas_array[cartaPrimera].info == cartas_array[cartaSegunda].info){
+                        iguales = true;
+                        cartas++;
+                        aciertos()
+                    } else {
+                        iguales = false;
+                    }
+                    setTimeout(volteaCarta, 1000);
+                }
+			}
+		}
+
+        function volteaCarta(){
+            if(iguales == false){
+                cartas_array[cartaPrimera].dibuja();
+                cartas_array[cartaSegunda].dibuja();
+            } else {
+                ctx.clearRect(cartas_array[cartaPrimera].x,cartas_array[cartaPrimera].y, cartas_array[cartaPrimera].ancho, cartas_array[cartaPrimera].largo);
+                ctx.clearRect(cartas_array[cartaSegunda].x,cartas_array[cartaSegunda].y, cartas_array[cartaSegunda].ancho, cartas_array[cartaSegunda].largo);
+
+                cartas_array[cartaPrimera].x = -1;
+                cartas_array[cartaSegunda].x = -1;
+            } 
+        }
+
+        function pinta(carta){
+            ctx.fillStyle = colorDelante;
+            ctx.fillRect(carta.x, carta.y, carta.ancho, carta.largo);
+            var imagen = new Image();
+			imagen.src = carta.img;
+			imagen.onload = function(){
+				ctx.drawImage(imagen, carta.x, carta.y, carta.ancho, carta.largo);
+			}
+        }
+
+        function aciertos(){
+            ctx.save();
+            ctx.fillStyle = "black";
+            if(cartas == 6){
+                ctx.clearRect(0,0, canvas.width, canvas.height);
+                ctx.font = "bold 80px Comic";
+                ctx.fillText("Muy bien, ¡eres un genio!", 60, 220);
+            } else {
+                ctx.clearRect(0,390, canvas.width/2,100);
+                ctx.font = "bold 40px Comic";
+                ctx.fillText("Aciertos: " + String(cartas), 30, 420);
+                ctx.restore();
+            }
+        }
+		
+		window.onload = function() {
+			canvas = document.getElementById("canvas1");
+			if(canvas && canvas.getContext) {
+				ctx = canvas.getContext("2d");
+				if(ctx) {
+					canvas.addEventListener("click",selecciona,false);
+					tablero();
+					barajear();
+                    aciertos();
+				} else {
+					alert("Error al crear el contexto");
+				}
+			}
+		}
+	</script>
+	
+</head>
+<body>
+	<h1>Memoria Imágenes Canvas</h1>
+	
+	<canvas id="canvas1" width="960px" height="450px">
+		Tu navegador no soporta el CANVAS
+	</canvas>
+</body>
+</html>
