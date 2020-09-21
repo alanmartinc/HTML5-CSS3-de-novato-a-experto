@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Canvas</title>
+	
+	<style>
+		body {
+			width: 960px;
+			margin: 0 auto;
+		}
+		h1 {
+			text-align: center;
+		}
+		#canvas1 {
+			border: dotted 2px yellow;
+			background: green;
+		}
+	</style>
+	
+	<script>
+		var ctx;
+		var canvas;
+		var palabra;
+		var letras = "QWERTYUIOPASDFGHJKLÑZXCVBNM";
+		var colorTecla = "purple";
+		var colorMargen = "yellow";
+		var inicioX = 200;
+		var inicioY = 300;
+		var lon = 35;
+		var margen = 20;
+
+		var teclas_array = new Array();
+		var letras_array = new Array();
+		var palabras_array = new Array();
+
+		var aciertos = 0;
+		var errores = 0;
+
+		palabras_array.push("PEGASO");
+		palabras_array.push("AFRODITA");
+		palabras_array.push("ATENEA");
+		palabras_array.push("HARES");
+		palabras_array.push("CRONOS");
+		palabras_array.push("HERMES");
+		palabras_array.push("DIONISIO");
+		palabras_array.push("PERSEO");
+		palabras_array.push("POSEIDON");
+		palabras_array.push("APOLO");
+
+		function Tecla(x, y, ancho, alto, letra){
+			this.x = x;
+			this.y = y;
+			this.ancho = ancho;
+			this.alto = alto;
+			this.letra = letra;
+			this.dibuja = dibujaTecla;
+		}
+
+		function Letra(x, y, ancho, alto, letra){
+			this.x = x;
+			this.y = y;
+			this.ancho = ancho;
+			this.alto = alto;
+			this.letra = letra;
+			this.dibuja = dibujaCajaLetra;
+			this.dibujaLetra = dibujaLetraLetra;
+		}
+
+		window.onload = function() {
+			var canvas = document.getElementById("canvas1");
+			if(canvas && canvas.getContext) {
+				var ctx = canvas.getContext("2d");
+				if(ctx) {
+					
+				} else {
+					alert("Error al crear el contexto");
+				}
+			}
+		}
+	</script>
+	
+</head>
+<body>
+	<h1>Ahorcado Canvas</h1>
+	
+	<canvas id="canvas1" width="960px" height="450px">
+		Tu navegador no soporta el CANVAS
+	</canvas>
+</body>
+</html>
