@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lee imagen</title>
+<script>
+window.onload = function(){
+	var apiFile=(window.File && window.FileReader);
+	
+	if(apiFile==false){
+		alert("Lo sentimos, tu navegador no soporta el API File de HTML5");
+		return;
+	}
+	document.getElementById("archivos").addEventListener("change",selecionaArchivo);
+	
+}
+function selecionaArchivo(e){
+	var archivo = e.target.files[0];
+	
+	if(archivo.type.match("image.*")==false){
+		document.getElementById("salida").innerHTML = "Este archivo no es un archivo de imagen";	
+		return;
+	}
+	var datos = new FileReader();
+	
+	datos.readAsDataURL(archivo);
+	
+	datos.onload = function(e){
+		var resultado = e.target.result;
+		
+		var imagen = new Image();
+		imagen.src = resultado;
+		document.getElementById("salida").appendChild(imagen);
+	}
+}
+</script>
+</head>
+
+<body>
+<h1>Seleccione un archivo de imagen</h1>
+<form action="">
+<input type="file" name="archivos" id="archivos"/>
+</form>
+<div id="salida"></div>
+</body>
+</html>
