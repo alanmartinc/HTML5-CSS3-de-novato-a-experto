@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+#soltar{
+	width:200px;
+	height:200px;
+	background:gray;
+	border: 3px solid black;	
+}
+</style>
+<script>
+window.onload = function(){
+	var apiFile=(window.File && window.FileReader);
+	
+	if(apiFile==false){
+		alert("Lo sentimos, tu navegador no soporta el API File de HTML5");
+		return;
+	}
+	
+	document.getElementById("soltar").addEventListener("drop",soltarArchivo);
+	document.getElementById("soltar").addEventListener("dragover",moverArchivo);
+	
+}
+function soltarArchivo(e){
+	e.stopPropagation();
+	e.preventDefault();
+	//
+	var archivos = e.dataTransfer.files;
+	var total = 0;
+	document.getElementById("salida").innerHTML ="";
+	//Ciclo
+	for(i=0; i<archivos.length; i++){
+		var info = "<p>Nombre: "+archivos[i].name+", tamaño: "+archivos[i].size+", tipo: "+archivos[i].type+"</p>";
+		total += archivos[i].size;
+		document.getElementById("salida").innerHTML += info;
+	}
+	document.getElementById("salida").innerHTML += "<p>Total de Kb leídos: "+total/1024+" en "+archivos.length+" archivos";
+}
+function moverArchivo(e){
+	e.stopPropagation();
+	e.preventDefault();
+}
+</script>
+<title>Arrastrar y Soltar</title>
+</head>
+
+<body>
+<p>Arrastra y suelte los archivos</p>
+<div id="soltar"></div>
+<p>Datos de los archivos</p>
+<div id="salida"></div>
+</body>
+</html>
