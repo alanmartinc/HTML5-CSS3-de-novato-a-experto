@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Uso de la etiqueta input</title>
+<script>
+window.onload = function(){
+	var apiFile=(window.File && window.FileReader);
+	
+	if(apiFile==false){
+		alert("Lo sentimos, tu navegador no soporta el API File de HTML5");
+		return;
+	}
+	document.getElementById("archivos").addEventListener("change",selecionaArchivo);
+	
+}
+function selecionaArchivo(e){
+	var archivo = e.target.files[0];
+	document.getElementById("nombre").innerHTML = archivo.name;
+	document.getElementById("tamano").innerHTML = archivo.size;
+	document.getElementById("tipo").innerHTML = archivo.type;
+}
+</script>
+</head>
+
+<body>
+<h1>Seleccione un archivo</h1>
+<form action="">
+<input type="file" name="archivos" id="archivos"/>
+</form>
+<p>Nombre: <span id="nombre">&nbsp;</span></p>
+<p>Tamaño: <span id="tamano">&nbsp;</span></p>
+<p>Tipo: <span id="tipo">&nbsp;</span></p>
+</body>
+</html>
