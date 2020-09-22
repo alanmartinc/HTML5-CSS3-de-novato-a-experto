@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Filtro de imagenes</title>
+<script>
+window.onload = function(){
+	var apiFile=(window.File && window.FileReader);
+	
+	if(apiFile==false){
+		alert("Lo sentimos, tu navegador no soporta el API File de HTML5");
+		return;
+	}
+	document.getElementById("archivos").addEventListener("change",selecionaArchivo);
+	
+}
+function selecionaArchivo(e){
+	var archivos = e.target.files;
+	var buenos = new Array();
+	var malos = new Array();
+	var total = 0;
+	document.getElementById("salida").innerHTML ="";
+	//Ciclo
+	for(i=0; i<archivos.length; i++){
+		if(archivos[i].type=="image/jpeg"){
+			var info = "<p>Nombre: "+archivos[i].name+", tamaño: "+archivos[i].size+", tipo: "+archivos[i].type+"</p>";
+			total += archivos[i].size;
+			document.getElementById("salida").innerHTML += info;
+			buenos.push(archivos[i]);
+		} else {
+			malos.push(archivos[i]);
+		}
+	}
+	document.getElementById("salida").innerHTML += "<p>Total de Kb JPG leídos: "+total/1024+" en "+buenos.length+" archivos";
+	document.getElementById("salida").innerHTML += "<p>Otros archivos leídos: "+malos.length;;
+	document.getElementById("imagenes").innerHTML = "<table><tr>";
+	for(i=0; i<buenos.length; i++){
+		document.getElementById("imagenes").innerHTML += "<td><img src='dioses/"+buenos[i].name+"' width='120' height='150'></td>";
+	}
+	document.getElementById("imagenes").innerHTML += "</tr></table>";
+}
+</script>
+</head>
+
+<body>
+<h1>Seleccione sólo archivos JPG</h1>
+<form action="">
+<input type="file" name="archivos" id="archivos" multiple/>
+</form>
+<div id="salida"></div>
+<div id="imagenes"></div>
+</body>
+</html>
