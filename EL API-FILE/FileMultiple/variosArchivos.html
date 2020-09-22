@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Varios Archivos</title>
+<script>
+window.onload = function(){
+	var apiFile=(window.File && window.FileReader);
+	
+	if(apiFile==false){
+		alert("Lo sentimos, tu navegador no soporta el API File de HTML5");
+		return;
+	}
+	document.getElementById("archivos").addEventListener("change",selecionaArchivo);
+	
+}
+function selecionaArchivo(e){
+	var archivos = e.target.files;
+	var total = 0;
+	document.getElementById("salida").innerHTML ="";
+	//Ciclo
+	for(i=0; i<archivos.length; i++){
+		var info = "<p>Nombre: "+archivos[i].name+", tamaño: "+archivos[i].size+", tipo: "+archivos[i].type+"</p>";
+		total += archivos[i].size;
+		document.getElementById("salida").innerHTML += info;
+	}
+	document.getElementById("salida").innerHTML += "<p>Total de Kb leídos: "+total/1024+" en "+archivos.length+" archivos";
+}
+</script>
+</head>
+
+<body>
+<h1>Seleccione más de un archivo</h1>
+<form action="">
+<input type="file" name="archivos" id="archivos" multiple/>
+</form>
+<div id="salida"></div>
+</body>
+</html>
