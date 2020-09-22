@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lee texto</title>
+<script>
+window.onload = function(){
+	var apiFile=(window.File && window.FileReader);
+	
+	if(apiFile==false){
+		alert("Lo sentimos, tu navegador no soporta el API File de HTML5");
+		return;
+	}
+	document.getElementById("archivos").addEventListener("change",selecionaArchivo);
+	
+}
+function selecionaArchivo(e){
+	var archivo = e.target.files[0];
+	
+	if(archivo.type != "text/plain"){
+		document.getElementById("salida").innerHTML = "Este archivo no es un texto plano";	
+		return;
+	}
+	var datos = new FileReader();
+	
+	datos.readAsText(archivo);
+	
+	datos.onload = function(e){
+		var resultado = e.target.result;	
+		document.getElementById("salida").innerHTML = resultado;
+	}
+}
+</script>
+</head>
+
+<body>
+<h1>Seleccione un archivo de texto plano</h1>
+<form action="">
+<input type="file" name="archivos" id="archivos"/>
+</form>
+<div id="salida"></div>
+</body>
+</html>
