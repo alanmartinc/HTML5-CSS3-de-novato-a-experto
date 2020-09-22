@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manjeo de eventos File-API</title>
+<script>
+var archivo = null;
+var lectura = null;
+var inicio = null;
+window.onload = function(){
+	var apiFile=(window.File && window.FileReader);
+	
+	if(apiFile==false){
+		alert("Lo sentimos, tu navegador no soporta el API File de HTML5");
+		return;
+	}
+	document.getElementById("archivos").addEventListener("change",selecionaArchivo);
+	document.getElementById("inicio").addEventListener("click", inicioCarga);
+	document.getElementById("cancela").addEventListener("click", cancelaCarga);
+}
+function selecionaArchivo(e){
+	archivo = e.target.files[0];
+	document.getElementById("nombre").innerHTML = e.name;
+}
+function inicioCarga(e){
+	if(archivo!=null){
+		lectura = new FileReader();
+		
+		lectura.onloadstart = iniciaCargaArchivo;
+		lectura.onloadend = terminaCargaArchivo;
+		lectura.onload = terminaCarga;
+		lectura.onerror = errorCargaArchivo;
+		lectura.onprogress = progresoCargaArchivo;
+		lectura.onabort = abortaCargaArchivo;
+		
+		lectura.readAsBinaryString(archivo);	
+	}
+}
+function iniciaCargaArchivo(e){
+	document.querySelector("#progreso").innerHTML += "<p>onloadstart: inicio de carga</p>";
+	
+}
+function terminaCargaArchivo(e){
+	
+	
+}
+function terminaCarga(e){
+	
+}
+function errorCargaArchivo(e){
+	
+}
+function progresoCargaArchivo(e){
+	
+}
+function abortaCargaArchivo(e){
+	
+}
+</script>
+</head>
+
+<body>
+<h1>Seleccione un archivo</h1>
+<form action="">
+<input type="file" name="archivos" id="archivos"/>
+</form>
+<p>Nombre del archivo:<span id="nombre"></span></p>
+<p>Proceso de carga:</p>
+<button id="inicio">Iniciar la carga</button>
+<button id="cancela">Cancelar la carga</button>
+<div id="progreso"></div>
+</body>
+</html>
