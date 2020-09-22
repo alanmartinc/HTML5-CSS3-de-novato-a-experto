@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CANVAS Ahorcado</title>
+<style>
+body{
+	width:960px;
+	margin:0 auto;
+}
+h1{
+	text-align:center;
+}
+#miCanvas{
+	border:dotted 2px yellow;
+	background:green;	
+}
+</style>
+<script>
+var ctx;
+var canvas;
+var palabra;
+var letras = "QWERTYUIOPASDFGHJKLÑZXCVBNM";
+var colorTecla = "purple";
+var colorMargen = "yellow";
+var inicioX = 200;
+var inicioY = 300;
+var lon = 35;
+var margen = 20;
+var aciertos = 0;
+var errores = 0;
+var teclas_array = new Array();
+var letras_array = new Array();
+var palabras_array = new Array();
+
+function Tecla(x,y,ancho,alto,letra){
+	this.x = x;
+	this.y = y;
+	this.ancho = ancho;
+	this.alto = alto;
+	this.letra = letra;
+	this.dibuja = dibujaTecla;
+}
+function Letra(x,y,ancho,alto,letra){
+	this.x = x;
+	this.y = y;
+	this.ancho = ancho;
+	this.alto = alto;
+	this.letra = letra;
+	this.dibuja = dibujaCajaLetra;
+	this.dibujaLetra = dibujaLetraLetra;
+}
+function dibujaCajaLetra(){
+	ctx.fillStyle = "white";
+	ctx.strokeStyle = "black";
+	ctx.fillRect(this.x, this.y, this.ancho, this.alto);	
+	ctx.strokeRect(this.x, this.y, this.ancho, this.alto);
+}
+function dibujaLetraLetra(){
+	ctx.fillStyle = "black";
+	ctx.font = "bold 40px Courier";
+	ctx.fillText(this.letra,this.x+this.ancho/2-15,this.y+this.alto/2+14);
+}
+function dibujaTecla(){
+	ctx.fillStyle = colorTecla;
+	ctx.strokeStyle = colorMargen;
+	ctx.fillRect(this.x, this.y, this.ancho, this.alto);	
+	ctx.strokeRect(this.x, this.y, this.ancho, this.alto);
+	ctx.fillStyle = "white";
+	ctx.font = "bold 20px Courier";
+	ctx.fillText(this.letra,this.x+this.ancho/2-8,this.y+this.alto/2+5);
+}
+function selecciona(e){
+	//Busca la tecla
+	var pos = ajusta(e.clientX, e.clientY);
+	var x = pos.x;
+	var y = pos.y;	
+	var tecla;
+	var bandera = false;	
+	for(var i=0; i<teclas_array.length;i++){
+		tecla = teclas_array[i];
+		//alert(carta.xx+", "+carta.yy+", "+xx+", "+yy);
+		if(tecla.x >=0){
+			if((x>tecla.x)&&
+			(x<tecla.x+tecla.ancho)&&
+			(y>tecla.y)&&
+			(y<tecla.y+tecla.alto)){
+				break;	
+			}
+		}	
+	}
+	//Procesa la letra
+	if(i<teclas_array.length){
+		for(var i=0; i<palabra.length; i++){
+			letra = palabra.substr(i,1);
+			if(tecla.letra==letra){
+				caja = letras_array[i];
+				caja.dibujaLetra();
+				aciertos++;
+				bandera = true;
+			}
+		}
+		if(bandera==false){
+			errores++;
+			pintaCadalzo(errores);
+			if(errores==5){
+				gameOver(errores);
+			}
+		}
+		//Borra tecla
+		ctx.clearRect(tecla.x-1,tecla.y-1,tecla.ancho+2,tecla.alto+2);
+		tecla.x = -1;
+		//
+		if(aciertos==palabra.length){
+			gameOver(errores);
+		}
+	}
+}
+function gameOver(errores){
+	ctx.clearRect(0,0,canvas.width,canvas.height);
+	ctx.fillStyle = "black";
+	ctx.font = "bold 50px Courier";
+	if(errores < 5){
+		ctx.fillText("Muy bien, la palabra es:",110,280);
+	} else {
+		ctx.fillText("Lo sentimos, la palabra era:",60,260);
+	}
+	ctx.font = "bold 80px Courier";
+	lon = (canvas.width-(palabra.length*48))/2;
+	ctx.fillText(palabra,lon,380);
+	pintaCadalzo(errores);
+}
+function ajusta(xx, yy){
+	var posCanvas = canvas.getBoundingClientRect();
+	var x = xx - posCanvas.left;
+	var y = yy - posCanvas.top;
+	return {x:x, y:y}	
+}
+function tablero(){
+	var ren = 0;
+	var col = 0;
+	var letra = "";
+	var miLetra;
+	var x = inicioX;
+	var y = inicioY;
+	for(var i=0; i<letras.length; i++){
+		letra = letras.substr(i,1);
+		miLetra = new Tecla(x, y, lon, lon, letra);
+		miLetra.dibuja();
+		teclas_array.push(miLetra);
+		x += lon + margen;
+		col++;
+		if(col==10){
+			col=0;
+			ren++;
+			if(ren==2){
+				x = 280;
+			} else {
+				x = inicioX;
+			}
+		}
+		y = inicioY + ren * 50;	
+	}
+}
+function pintaPalabra(){
+	p = Math.floor(Math.random()*palabras_array.length);
+	palabra = palabras_array[p];
+	ren = 0;
+	col = 0;
+	y = 230;
+	lon = 50;
+	x = (960 - (lon+margen) * palabra.length)/2;
+	for(var i=0; i<palabra.length; i++){
+		letra = palabra.substr(i,1);
+		miLetra = new Letra(x, y, lon, lon, letra);
+		miLetra.dibuja();
+		letras_array.push(miLetra);
+		x += lon + margen;
+	}	
+}
+function pintaCadalzo(error){
+	var imagen = new Image();
+	imagen.src = "imagenes/ahorcado/ahorcado"+error+".png";
+	imagen.onload = function(){
+		ctx.drawImage(imagen, 390, 20, 180, 180);
+	}
+}
+window.onload = function(){
+	canvas = document.getElementById("miCanvas");
+	if(canvas && canvas.getContext){
+		ctx = canvas.getContext("2d");
+		if(ctx){
+			//
+			palabras_array.push("PEGASO");
+			palabras_array.push("AFRODITA");
+			palabras_array.push("ATENEA");
+			palabras_array.push("HARES");
+			palabras_array.push("CRONOS");
+			palabras_array.push("HERMES");
+			palabras_array.push("APOLO");
+			palabras_array.push("HERACLES");
+			palabras_array.push("POSEIDON");
+			palabras_array.push("DIONISIO");
+			palabras_array.push("PERSEO");
+			//
+			tablero();
+			pintaPalabra();
+			pintaCadalzo(errores);
+			canvas.addEventListener("click", selecciona, false);
+		} else {
+			alert("Error al crear tu contexto");	
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+<h1>CANVAS - Ahorcado</h1>
+<canvas id="miCanvas" width="960px" height="450px">
+Tu navegador no soporta CANVAS
+</canvas>
+</body>
+</html>
