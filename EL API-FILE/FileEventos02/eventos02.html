@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manjeo de eventos File-API</title>
+<script>
+var archivo = null;
+var lectura = null;
+var inicio = true;
+window.onload = function(){
+	var apiFile=(window.File && window.FileReader);
+	
+	if(apiFile==false){
+		alert("Lo sentimos, tu navegador no soporta el API File de HTML5");
+		return;
+	}
+	document.getElementById("archivos").addEventListener("change",selecionaArchivo);
+	document.getElementById("inicio").addEventListener("click", inicioCarga);
+	document.getElementById("cancela").addEventListener("click", cancelaCarga);
+}
+function cancelaCarga(e){
+	if(lectura) lectura.abort();	
+}
+function selecionaArchivo(e){
+	archivo = e.target.files[0];
+	document.getElementById("nombre").innerHTML = archivo.name;
+}
+function inicioCarga(e){
+	if(archivo!=null){
+		lectura = new FileReader();
+		
+		lectura.onloadstart = iniciaCargaArchivo;
+		lectura.onloadend = terminaCargaArchivo;
+		lectura.onload = terminaCarga;
+		lectura.onerror = errorCargaArchivo;
+		lectura.onprogress = progresoCargaArchivo;
+		lectura.onabort = abortaCargaArchivo;
+		
+		lectura.readAsBinaryString(archivo);	
+	}
+}
+function iniciaCargaArchivo(e){
+	document.querySelector("#progreso").innerHTML += "<p>onloadstart: Inicio de carga</p>";
+}
+function terminaCargaArchivo(e){
+	document.querySelector("#progreso").innerHTML += "<p>onloadend: Fin de la carga</p>";
+}
+function terminaCarga(e){
+	document.querySelector("#progreso").innerHTML += "<p>onload: Fin de la carga</p>";
+}
+function errorCargaArchivo(e){
+	document.querySelector("#progreso").innerHTML += "<p>onerror: Hay un error en la carga</p>";
+	switch(e.target.error.code){
+		case e.target.error.NOT_FOUND_ERR:
+			document.querySelector("#progreso").innerHTML += "<p>onerror: Archivo no encontrado</p>";
+			break;
+		case e.target.error.NOT_READABLE_ERR:
+			document.querySelector("#progreso").innerHTML += "<p>onerror: Archivo ilegible</p>";
+			break;
+	}
+}
+function progresoCargaArchivo(e){
+	if(e.lengthComputable){
+		if(inicio){
+			inicio = false;	
+			document.querySelector("#progreso").innerHTML += "<p id='porcien'></p>";
+		}
+		var porciento = Math.round((e.loaded/e.total)*100);
+		document.querySelector("#porcien").innerHTML = "<p>"+porciento+"% de carga</p>";
+	}
+}
+function abortaCargaArchivo(e){
+	document.querySelector("#progreso").innerHTML += "<p>onabort: Proceso de carga cancelado</p>";
+}
+</script>
+</head>
+
+<body>
+<h1>Seleccione un archivo</h1>
+<form action="">
+<input type="file" name="archivos" id="archivos"/>
+</form>
+<p>Nombre del archivo:<span id="nombre"></span></p>
+<p>Proceso de carga:</p>
+<button id="inicio">Iniciar la carga</button>
+<button id="cancela">Cancelar la carga</button>
+<div id="progreso"></div>
+</body>
+</html>
