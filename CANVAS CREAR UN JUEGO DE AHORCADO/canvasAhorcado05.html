@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CANVAS Ahorcado</title>
+<style>
+body{
+	width:960px;
+	margin:0 auto;
+}
+h1{
+	text-align:center;
+}
+#miCanvas{
+	border:dotted 2px yellow;
+	background:green;	
+}
+</style>
+<script>
+/*** Variables ***/
+var ctx;
+var canvas;
+var palabra;
+var letras = "QWERTYUIOPASDFGHJKLÑZXCVBNM";
+var colorTecla = "purple";
+var colorMargen = "yellow";
+var inicioX = 200;
+var inicioY = 300;
+var lon = 35;
+var margen = 20;
+//Arreglos
+var teclas_array = new Array();
+var letras_array = new Array();
+var palabras_array = new Array();
+//Variables de control
+var aciertos = 0;
+var errores = 0;
+//
+palabras_array.push("PEGASO");
+palabras_array.push("AFRODITA");
+palabras_array.push("ATENEA");
+palabras_array.push("HARES");
+palabras_array.push("CRONOS");
+palabras_array.push("HERMES");
+palabras_array.push("DIONISIO");
+palabras_array.push("PERSEO");
+palabras_array.push("POSEIDON");
+palabras_array.push("APOLO");
+//
+function Tecla(x, y, ancho, alto, letra){
+	this.x = x;
+	this.y = y;
+	this.ancho = ancho;
+	this.alto = alto;
+	this.letra = letra;	
+	this.dibuja = dibujaTecla;
+}
+function Letra(x, y, ancho, alto, letra){
+	this.x = x;
+	this.y = y;
+	this.ancho = ancho;
+	this.alto = alto;
+	this.letra = letra;	
+	this.dibuja = dibujaCajaLetra;
+	this.dibujaLetra = dibujaLetraLetra;
+}
+function dibujaTecla(){
+	ctx.fillStyle = colorTecla;
+	ctx.strokeStyle = colorMargen;
+	ctx.fillRect(this.x, this.y, this.ancho, this.alto);
+	ctx.strokeRect(this.x, this.y, this.ancho, this.alto);
+	//
+	ctx.fillStyle = "white";
+	ctx.font = "bold 20px Courier";
+	ctx.fillText(this.letra, this.x+this.ancho/2-5, this.y+this.alto/2+5);
+	
+}
+function dibujaLetraLetra(){
+	ctx.fillStyle = "black";
+	ctx.font = "bold 40px Courier";
+	ctx.fillText(this.letra, this.x+this.ancho/2-15, this.y+this.alto/2+14);
+}
+function dibujaCajaLetra(){
+	ctx.fillStyle = "white";
+	ctx.strokeStyle = "black";
+	ctx.fillRect(this.x, this.y, this.ancho, this.alto);
+	ctx.strokeRect(this.x, this.y, this.ancho, this.alto);
+}
+/*** FUNCiONES **/
+function teclado(){
+	var ren = 0;
+	var col = 0;
+	var letra = "";
+	var miLetra;
+	var x = inicioX;
+	var y = inicioY;
+	for(var i = 0; i < letras.length; i++){
+		letra = letras.substr(i,1);
+		miLetra = new Tecla(x, y, lon, lon, letra);
+		miLetra.dibuja();
+		teclas_array.push(miLetra);
+		//
+		x += lon + margen;
+		col++;
+		if(col==10){
+			col = 0;
+			ren++;
+			if(ren==2){
+				x = 280;
+			} else {
+				x = inicioX;
+			}
+		}
+		y = inicioY + ren * 50;
+	}
+}
+function pintaPalabra(){
+	var p = Math.floor(Math.random()*palabras_array.length);
+	palabra = 	palabras_array[p];
+	var ren = 0;
+	var col = 0;
+	var y = 230;
+	var lon = 50;
+	var x = (canvas.width - (lon+margen) * palabra.length)/2;
+	for(var i=0; i<palabra.length; i++){
+		letra = palabra.substr(i,1);
+		miLetra = new Letra(x, y, lon, lon, letra);
+		miLetra.dibuja();
+		letras_array.push(miLetra);
+		x += lon + margen;
+	}
+}
+function cadalso(errores){
+	var imagen = new Image();
+	imagen.src = "imagenes/ahorcado/ahorcado"+errores+".png";
+	imagen.onload = function(){
+		ctx.drawImage(imagen,390,20,180,180);	
+	}
+}
+function ajusta(xx, yy){
+	var posCanvas = canvas.getBoundingClientRect();
+	var x = xx - posCanvas.left;
+	var y = yy - posCanvas.top;
+	return {x:x, y:y}
+	
+}
+function selecciona(e){
+	var pos = ajusta(e.clientX, e.clientY);	
+	var x = pos.x;
+	var y = pos.y;
+	var tecla;
+	var bandera = false;
+	for(var i=0; i<teclas_array.length; i++){
+		tecla = teclas_array[i];
+		if(tecla.x > 0){
+			if((x > tecla.x)&&(x < tecla.x + tecla.ancho)&&
+			   (y > tecla.y)&&(y< tecla.y + tecla.alto)){
+				break;	
+			}
+		}
+	}
+	if(i<teclas_array.length){
+		alert(i);
+	}
+}
+window.onload = function(){
+	canvas = document.getElementById("miCanvas");
+	if(canvas && canvas.getContext){
+		ctx = canvas.getContext("2d");
+		if(ctx){
+			teclado();
+			pintaPalabra();
+			cadalso(errores);
+			canvas.addEventListener("click",selecciona,false);
+		} else {
+			alert("Error al crear tu contexto");	
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+<h1>Ahorcado CANVAS</h1>
+<canvas id="miCanvas" width="960px" height="450px">
+Tu navegador no soporta CANVAS
+</canvas>
+</body>
+</html>
