@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Geolocalización Mapa</title>
+<script>
+function coordenadas(){
+	if(navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(muestraCoordenadas,manejoErrores);	
+	} else {
+		document.getElementById("salida").innerHTML("Tu navegador no soporta la geolocalización");
+	}
+}
+function muestraCoordenadas(posicion){
+	var lt = posicion.coords.latitude;
+	var ln = posicion.coords.longitude;
+	document.getElementById("salida").innerHTML = "Latitud: "+lt+"<br>Longitud: "+ln;	
+
+	var mapa = "http://maps.googleapis.com/maps/api/staticmap?center="+lt+","+ln;
+	mapa += "&zoom=18&size=400x300&sensor=false";
+	
+	document.getElementById("mapa").innerHTML = "<img src='"+mapa+"'>";
+}
+function manejoErrores(error){
+	var salida = document.getElementById("salida");
+	switch(error.code){
+		case error.PERMISSION_DENIED:
+			salida.innerHTML = "El usuario no permitió su ubicación";
+			break;
+		case error.POSITION_UNAVAILABLE:
+			salida.innerHTML = "Ubicación no disponible";
+			break;
+		case error.TIMEOUT:
+			salida.innerHTML = "Tiempo transcurrido";
+			break;	
+		case error.UNKNOWN_ERROR:
+			salida.innerHTML = "Error desconocido";
+			break;
+	}
+}
+</script>
+</head>
+
+<body>
+<p id="salida">Pulsa el botón para obtener tus coordenadas</p>
+<button onclick="coordenadas()">Coordenadas</button>
+<div id="mapa"></div>
+</body>
+</html>
