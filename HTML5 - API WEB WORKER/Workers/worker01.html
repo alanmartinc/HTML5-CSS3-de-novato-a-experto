@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Web Worker</title>
+<script>
+var w;
+function iniciar(){
+	if(typeof(Worker)!=="undefined"){
+		if(typeof(w)=="undefined"){
+			w = new Worker("worker.js");
+		}
+		w.onmessage = function(event){
+			document.getElementById("salida").innerHTML = event.data;
+		}
+	} else {
+		document.getElementById("salida").innerHTML = "Tu navegador no soporta web workers";
+	}
+}
+function finalizar(){
+	w.terminate();
+	w = undefined;	
+}
+
+</script>
+</head>
+
+<body>
+<p>Pulsar un botón para iniciar o detenera el proceso</p>
+<button onClick="iniciar()">Inicia Web Worker</button>
+<button onClick="finalizar()">Finalizar Web Worker</button>
+<div id="salida"></div>
+</body>
+</html>
