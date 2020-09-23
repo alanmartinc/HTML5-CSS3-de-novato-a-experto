@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Libros ABC-CRUD</title>
+<script>
+var indice = -1;
+var accion = "A";
+var libros = localStorage.getItem("libros");
+libros=JSON.parse(libros);
+if(libros==null) libros = [];
+//
+function lista(){
+	document.getElementById("listado").innerHTML = "";
+	var tabla = "<tr><th>Titulo</th><th>Autor</th><th>Editorial</th><th>Año</th><th>Borrar</th><th>Editar</th></tr>";
+	for(var i in libros){
+		var libro = JSON.parse(libros[i]);
+		tabla += "<tr><td>"+libro.titulo+"</td>";	
+		tabla += "<td>"+libro.autor+"</td>";
+		tabla += "<td>"+libro.editorial+"</td>";
+		tabla += "<td>"+libro.anio+"</td>";
+		tabla += "<td><input type='button' value='Baja' onClick='borra("+i+")'></td>";
+		tabla += "<td><input type='button' value='Edita' onClick='edita("+i+")'></td>";
+		tabla += "</tr>";				
+	}
+	document.getElementById("listado").innerHTML = tabla;
+}
+function alta(){
+	var titulo = document.getElementById("titulo").value;
+	var autor = document.getElementById("autor").value;
+	var editorial = document.getElementById("editorial").value;
+	var anio = document.getElementById("anio").value;
+	//
+	var libro = JSON.stringify({
+		titulo:titulo,	
+		autor:autor,
+		editorial:editorial,
+		anio:anio
+	});
+	//añadir al objeto JSON
+	if(accion=="A"){
+		libros.push(libro);
+		localStorage.setItem("libros", JSON.stringify(libros));
+		alert("Libro añadido existosamente");
+	} else {
+		libros[indice]= libro;
+		localStorage.setItem("libros", JSON.stringify(libros));
+		alert("Libro ha sido modificado existosamente");
+	}
+	lista();
+	document.getElementById("titulo").value = "";
+	document.getElementById("autor").value = "";
+	document.getElementById("editorial").value = "";
+	document.getElementById("anio").value = "";
+	return true;
+}
+function borra(i){
+	indice = i;
+	var libro = JSON.parse(libros[indice]);
+	var titulo = libro.titulo;
+	if(confirm("¿Desea borrar el libro '"+titulo+"'?")){
+		libros.splice(indice,1);
+		localStorage.setItem("libros", JSON.stringify(libros));
+		alert("El libro '"+titulo+"' ha sido eliminado");
+	}
+	lista();
+}
+function edita(i){
+	indice = i;
+	accion = "E";
+	var libro = JSON.parse(libros[indice]);
+	document.getElementById("titulo").value = libro.titulo;
+	document.getElementById("autor").value = libro.autor;
+	document.getElementById("editorial").value = libro.editorial;
+	document.getElementById("anio").value = libro.anio;
+}
+window.onload = function(){
+	lista();	
+}
+</script>
+</head>
+
+<body>
+<form>
+<table>
+<tr>
+<td>Titulo:</td>
+<td><input type="text" id="titulo"/></td>
+</tr>
+<tr>
+<td>Autor:</td>
+<td><input type="text" id="autor"/></td>
+</tr>
+<tr>
+<td>Editorial</td>
+<td><input type="text" id="editorial"/></td>
+</tr>
+<tr>
+<td>Año:</td>
+<td><input type="text" id="anio"/></td>
+</tr>
+<tr>
+<td><input type="button" value="Guardar" onClick="alta()"></td>
+<td></td>
+</tr>
+</table>
+</form>
+<table id="listado" border="1" width="800">
+
+</table>
+</body>
+</html>
