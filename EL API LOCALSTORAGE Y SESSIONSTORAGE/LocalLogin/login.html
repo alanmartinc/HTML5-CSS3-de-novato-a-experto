@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+<script>
+function guardar(){
+	localStorage.nombre = document.getElementById("nombre").value;
+	localStorage.clave = document.getElementById("clave").value;
+}
+function recuperar(){
+	if((localStorage.nombre != undefined) && (localStorage.clave != undefined)){
+		document.getElementById("salida").innerHTML = "Usuario: "+localStorage.nombre+"<br>Clave de acceso: "+localStorage.clave;
+		document.getElementById("nombre").value = localStorage.nombre;
+		document.getElementById("clave").value = localStorage.clave;
+	} else {
+		document.getElementById("salida").innerHTML = "No hay datos almacenados";
+	}
+}
+window.onload = function(){
+	if(typeof(Storage) !== "undefined"){
+		//alert("Si soporta tu navegador el localstorage");
+	} else {
+		alert("Debes de actualizar tu navegador");
+	}
+	
+}
+
+
+</script>
+</head>
+
+<body>
+<table>
+<tr>
+<td>Nombre:</td>
+<td><input type="text" id="nombre"/></td>
+</tr>
+<tr>
+<td>Clave:</td>
+<td><input type="password" id="clave"/></td>
+</tr>
+<tr>
+<td><input type="button" onClick="guardar()" value="Guardar datos"/></td>
+<td><input type="button" onClick="recuperar()" value="Recuperar datos"/></td>
+</tr>
+</table>
+<p id="salida">Recuperar tus datos</p>
+</body>
+</html>
