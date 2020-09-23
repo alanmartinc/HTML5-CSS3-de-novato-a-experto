@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Arrastrar y Soltar</title>
+<style>
+#zona{
+	width:160px;
+	height:196px;
+	padding:10px;
+	border:1px black solid;	
+}
+</style>
+<script>
+function permitir(e){
+	e.preventDefault();	
+}
+function arrastrar(e){
+	e.dataTransfer.setData("text",e.target.id);
+}
+function soltar(e){
+	e.preventDefault();
+	var data = e.dataTransfer.getData("text");
+	e.target.appendChild(document.getElementById(data));
+}
+</script>
+</head>
+
+<body>
+<p>Arrastrar la imagen a la zona indicada</p>
+<div id="zona" ondrop="soltar(event)" ondragover="permitir(event)"></div>
+<img id="foto" src="dioses/poseidon160x196.jpg" draggable="true" ondragstart="arrastrar(event)" width="160" height="196"/>
+</body>
+</html>
