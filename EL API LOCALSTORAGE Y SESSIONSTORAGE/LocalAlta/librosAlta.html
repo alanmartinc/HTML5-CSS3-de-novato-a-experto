@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>alta JSON</title>
+<script>
+var libros = localStorage.getItem("libros");
+libros=JSON.parse(libros);
+if(libros==null) libros = [];
+//
+function lista(){
+	document.getElementById("listado").innerHTML = "";
+	var tabla = "<tr><th>Titulo</th><th>Autor</th><th>Editorial</th><th>Año</th></tr>";
+	for(var i in libros){
+		var libro = JSON.parse(libros[i]);
+		tabla += "<tr><td>"+libro.titulo+"</td>";	
+		tabla += "<td>"+libro.autor+"</td>";
+		tabla += "<td>"+libro.editorial+"</td>";
+		tabla += "<td>"+libro.anio+"</td>";
+		tabla += "</tr>";				
+	}
+	document.getElementById("listado").innerHTML = tabla;
+}
+function alta(){
+	var titulo = document.getElementById("titulo").value;
+	var autor = document.getElementById("autor").value;
+	var editorial = document.getElementById("editorial").value;
+	var anio = document.getElementById("anio").value;
+	//
+	var libro = JSON.stringify({
+		titulo:titulo,	
+		autor:autor,
+		editorial:editorial,
+		anio:anio
+	});
+	//añadir al objeto JSON
+	libros.push(libro);
+	localStorage.setItem("libros", JSON.stringify(libros));
+	alert("Libro añadido existosamente");
+	lista();
+	return true;
+}
+window.onload = function(){
+	lista();	
+}
+</script>
+</head>
+
+<body>
+<form>
+<table>
+<tr>
+<td>Titulo:</td>
+<td><input type="text" id="titulo"/></td>
+</tr>
+<tr>
+<td>Autor:</td>
+<td><input type="text" id="autor"/></td>
+</tr>
+<tr>
+<td>Editorial</td>
+<td><input type="text" id="editorial"/></td>
+</tr>
+<tr>
+<td>Año:</td>
+<td><input type="text" id="anio"/></td>
+</tr>
+<tr>
+<td><input type="button" value="Guardar" onClick="alta()"></td>
+<td></td>
+</tr>
+</table>
+</form>
+<table id="listado" border="1" width="800">
+
+</table>
+</body>
+</html>
