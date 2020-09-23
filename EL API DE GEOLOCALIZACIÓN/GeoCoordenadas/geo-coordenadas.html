@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Geolocalización Coordenadas</title>
+<script>
+function coordenadas(){
+	if(navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(muestraCoordenadas);	
+	} else {
+		document.getElementById("salida").innerHTML("Tu navegador no soporta la geolocalización");
+	}
+}
+function muestraCoordenadas(posicion){
+	var lt = posicion.coords.latitude;
+	var ln = posicion.coords.longitude;
+	document.getElementById("salida").innerHTML = "Latitud: "+lt+"<br>Longitud: "+ln;	
+}
+
+</script>
+</head>
+
+<body>
+<p id="salida">Pulsa el botón para obtener tus coordenadas</p>
+<button onclick="coordenadas()">Coordenadas</button>
+</body>
+</html>
