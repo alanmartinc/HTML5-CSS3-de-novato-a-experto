@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ATENEA</title>
+<style>
+/*Elementos de neutralidad*/
+header, article, footer, section, nav, aside{
+	display:block;
+	margin:0;
+	padding:0;
+}
+html{
+	margin:0;
+	padding:0;
+}
+body{
+	width:960px;
+	background:white;
+	margin:0 auto;
+	font-family:Verdana, Geneva, sans-serif;
+	background: rgb(240,183,161); /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmMGI3YTEiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIzNCUiIHN0b3AtY29sb3I9IiM4YzMzMTAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI3NCUiIHN0b3AtY29sb3I9IiM3NTIyMDEiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjYmY2ZTRlIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+background: -moz-radial-gradient(center, ellipse cover,  rgba(240,183,161,1) 0%, rgba(140,51,16,1) 34%, rgba(117,34,1,1) 74%, rgba(191,110,78,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(240,183,161,1)), color-stop(34%,rgba(140,51,16,1)), color-stop(74%,rgba(117,34,1,1)), color-stop(100%,rgba(191,110,78,1))); /* Chrome,Safari4+ */
+
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(240,183,161,1) 0%,rgba(140,51,16,1) 34%,rgba(117,34,1,1) 74%,rgba(191,110,78,1) 100%); /* Chrome10+,Safari5.1+ */
+
+background: -o-radial-gradient(center, ellipse cover,  rgba(240,183,161,1) 0%,rgba(140,51,16,1) 34%,rgba(117,34,1,1) 74%,rgba(191,110,78,1) 100%); /* Opera 12+ */
+
+background: -ms-radial-gradient(center, ellipse cover,  rgba(240,183,161,1) 0%,rgba(140,51,16,1) 34%,rgba(117,34,1,1) 74%,rgba(191,110,78,1) 100%); /* IE10+ */
+
+background: radial-gradient(ellipse at center,  rgba(240,183,161,1) 0%,rgba(140,51,16,1) 34%,rgba(117,34,1,1) 74%,rgba(191,110,78,1) 100%); /* W3C */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0b7a1', endColorstr='#bf6e4e',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
+
+
+}
+p, h1, h2, h3{
+	margin:0;
+	padding:0;
+}
+/*Etiquetas estructurales
+Colores:
+Encabezado: #76a68b
+Articulo:   #bcd5b0
+Footer:     #898c70
+*/
+header{
+	height:90px;
+	background:#76a68b;
+	
+}
+article{
+	height:auto;
+	/*Navegadores viejitos*/
+	background:#bcd5b0;
+	background: rgb(180,221,180); /* Old browsers */
+
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNiNGRkYjQiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxNyUiIHN0b3AtY29sb3I9IiM4M2M3ODMiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIzMyUiIHN0b3AtY29sb3I9IiM1MmIxNTIiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI2NyUiIHN0b3AtY29sb3I9IiMwMDhhMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI4MyUiIHN0b3AtY29sb3I9IiMwMDU3MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDAyNDAwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+
+background: -moz-radial-gradient(center, ellipse cover,  rgba(180,221,180,1) 0%, rgba(131,199,131,1) 17%, rgba(82,177,82,1) 33%, rgba(0,138,0,1) 67%, rgba(0,87,0,1) 83%, rgba(0,36,0,1) 100%); /* FF3.6+ */
+
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(180,221,180,1)), color-stop(17%,rgba(131,199,131,1)), color-stop(33%,rgba(82,177,82,1)), color-stop(67%,rgba(0,138,0,1)), color-stop(83%,rgba(0,87,0,1)), color-stop(100%,rgba(0,36,0,1))); /* Chrome,Safari4+ */
+
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(180,221,180,1) 0%,rgba(131,199,131,1) 17%,rgba(82,177,82,1) 33%,rgba(0,138,0,1) 67%,rgba(0,87,0,1) 83%,rgba(0,36,0,1) 100%); /* Chrome10+,Safari5.1+ */
+
+background: -o-radial-gradient(center, ellipse cover,  rgba(180,221,180,1) 0%,rgba(131,199,131,1) 17%,rgba(82,177,82,1) 33%,rgba(0,138,0,1) 67%,rgba(0,87,0,1) 83%,rgba(0,36,0,1) 100%); /* Opera 12+ */
+
+background: -ms-radial-gradient(center, ellipse cover,  rgba(180,221,180,1) 0%,rgba(131,199,131,1) 17%,rgba(82,177,82,1) 33%,rgba(0,138,0,1) 67%,rgba(0,87,0,1) 83%,rgba(0,36,0,1) 100%); /* IE10+ */
+
+background: radial-gradient(ellipse at center,  rgba(180,221,180,1) 0%,rgba(131,199,131,1) 17%,rgba(82,177,82,1) 33%,rgba(0,138,0,1) 67%,rgba(0,87,0,1) 83%,rgba(0,36,0,1) 100%); /* W3C */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ddb4', endColorstr='#002400',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
+
+background-attachment:fixed;
+background-size:100% 100%;
+background-repeat:no-repeat;
+}
+footer{
+	height:60px;
+	background:#898c70;
+}
+nav{
+	font_size:.7em;
+	color:#f2e3b6;
+	text-align:center;
+	paddin-top:1em;
+}
+/*Estilos de fuente*/
+h1{
+	font-size:2.2em;
+	color:#FFF;
+ 	text-align: center;
+}
+h2{
+	font-size:1.8em;
+	color:#f2e3b6;
+ 	text-align: center;
+	padding-top:.2em;
+}
+h3{
+	font-size:.8em;
+	color:#f2e3b6;
+ 	text-align: center;
+}
+	
+p{
+	font-size:1em;
+	padding-top:1em;
+	padding-left:1em;
+	padding-right:1em;
+	line-height:1.2em;
+}
+ul, li{
+	display:inline;
+}
+a{
+	text-decoration:none;
+	font-size:0.8em;
+	color:#f2e3b6;
+	text-align:center;
+}
+/*Clases*/
+.izq{
+	float:left;
+	margin-right:1em;
+}
+.der{
+	float:right;
+	margin-left:1em;
+}
+</style>
+</head>
+
+<body>
+<header><h1>HISTORIA DE GRECIA</h1><h2>ATENEA</h2></header>
+<article><p><img src="../imagenes/atenea.jpg" class="izq"/>Atenea, también conocida como Palas Atenea es, en la mitología griega, la diosa de la guerra, la civilización, la sabiduría, la estrategia, las artes, la justicia y la habilidad.</p>
+<p><img src="../imagenes/atenea4.jpg" class="der"/>Es una de las principales deidades del panteón griego y uno de los doce dioses del Olimpo, Atenea recibe culto en toda la antigua Grecia y en toda su zona de influencia, desde las colonias griegas de Asia Menor a la península Ibérica y el norte de África. Su presencia está atestiguada en las proximidades de la India. De ahí su culto tomó muchas formas, y su figura era divinidades sincréticas con varias regiones de todo el Mediterráneo, se extiende la variedad de formas de culto. Su equivalente aproximado en la mitología romana era Minerva.</p>
+<p>La versión más actual de su mito la pone como hija de Zeus y Metis, nacida completamente armada de la cabeza a los pies. Nunca se casó ni tuvo amantes, se ha encargado de mantener una virginidad perpetua. Fue una guerrera invicta, incluso contra Ares el dios de la guerra. Se convirtió en patrona de varias ciudades, siendo más conocida como la protectora de Atenas y Ática. También era la protectora de varios héroes y otros personajes míticos, que aparece en muchos de los episodios de la mitología. Fue una de las diosas más representadas en el arte griego y su simbolismo tuvo una profunda influencia en el pensamiento griego, sobre todo en los conceptos de justicia, la sabiduría y la función civilizadora de la cultura y las artes, cuyos reflejos se perciben aún hoy en todo Occidente. Su imagen ha sufrido varias transformaciones en los siglos, la incorporación de nuevas características, nuevos contextos y que influyen en la interacción con otras figuras simbólicas, fue utilizada por varios regímenes políticos para legitimar sus principios, incluso ha penetrado en la cultura popular, su identidad de género ha sido fascinante atractivo especial para los escritores relacionados con el feminismo y la psicología y, por último, algunas corrientes religiosas contemporáneas han empezado a darle de nuevo una verdadera adoración.</p>
+<p>&nbsp;</p>
+</article>
+<footer><h3>Todos los derechos reservados por la Máquina de los Dioses &copy;</h3><nav>
+<ul>
+<li><a href="afrodita.html">Afrodita</a>&nbsp;|</li>
+<li><a href="zeus.html">Zeus</a>&nbsp;|</li>
+<li><a href="perseo.html">Perseo</a>&nbsp;|</li>
+<li><a href="ares.html">Ares</a>&nbsp;|</li>
+<li><a href="poseidon.html">Poseidón</a>&nbsp;|</li>
+<li><a href="hercules.html">Hércules</a></li>
+</ul>
+</nav>
+</footer>
+</body>
+</html>
