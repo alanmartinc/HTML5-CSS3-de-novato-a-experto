@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*Elementos de neutralidad*/
+header, article, footer, section, nav, aside{
+	display:block;
+	margin:0;
+	padding:0;
+}
+html{
+	background:#FFF;
+	margin:0;
+	padding:0;
+}
+body{
+	width:960px;
+	background:#ff6;
+	margin:0 auto;
+	font-family:Verdana, Geneva, sans-serif;
+}
+p, h1, h2, h3{
+	margin:0;
+	padding:0;
+}
+/*Etiquetas estructurales*/
+header{
+	height:90px;
+	background:#76a68b;
+}
+article{
+	height:460px;
+	background:#bcd5b0;
+}
+footer{
+	height:60px;
+	background:#898c70;
+	clear:both;
+}
+nav{
+	font_size:.7em;
+	color:#f2e3b6;
+	text-align:center;
+	paddin-top:1em;
+}
+/*Estilos de fuente*/
+h1{
+	font-size:2.2em;
+	color:#FFF;
+ 	text-align: center;
+}
+h2{
+	font-size:1.8em;
+	color:#f2e3b6;
+ 	text-align: center;
+	padding-top:.2em;
+}
+h3{
+	font-size:.8em;
+	color:#f2e3b6;
+ 	text-align: center;
+}
+	
+p{
+	font-size:1em;
+	padding-top:1em;
+	padding-left:1em;
+	padding-right:1em;
+	line-height:1.2em;
+	color:#CCC;
+}
+ul, li{
+	display:inline;
+}
+a{
+	text-decoration:none;
+	font-size:0.8em;
+	color:#f2e3b6;
+	text-align:center;
+}
+/*Clases*/
+.izq{
+	float:left;
+	margin-right:1em;
+}
+.der{
+	float:right;
+	margin-left:1em;
+}
+/*CAJAS*/
+.caja1{
+	width:285px;
+	height:195px;
+	background:rgba(6,6,6,.5);
+	margin:5px;
+	padding:10px;
+	float:left;
+	font-size:0.9em;
+	border: 2px solid #000;
+	
+	/*Bordes*/
+	border-radius:15px 0;
+	-moz-border-radius:15px 0;
+	-webkit-border-radius:15px 0 15px 0;
+	/*Sombra*/
+	box-shadow:2px 2px 5px #000;
+	-moz-box-shadow:2px 2px 5px #000;
+	-webkit-box-shadow:2px 2px 5px #000;
+}
