@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ATENEA</title>
+<style>
+/*Fuentes externas*/
+@font-face {
+    font-family: 'PlainBlackNormal';
+    src: url('../fuentes/PlainBlack/Plain_Black-webfont.eot');
+    src: url('../fuentes/PlainBlack/Plain_Black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fuentes/PlainBlack/Plain_Black-webfont.woff') format('woff'),
+         url('../fuentes/PlainBlack/Plain_Black-webfont.ttf') format('truetype'),
+         url('../fuentes/PlainBlack/Plain_Black-webfont.svg#PlainBlackNormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'PlainBlackWideNormal';
+    src: url('../fuentes/PlainBlack/Plain_Black_Wide-webfont.eot');
+    src: url('../fuentes/PlainBlack/Plain_Black_Wide-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fuentes/PlainBlack/Plain_Black_Wide-webfont.woff') format('woff'),
+         url('../fuentes/PlainBlack/Plain_Black_Wide-webfont.ttf') format('truetype'),
+         url('../fuentes/PlainBlack/Plain_Black_Wide-webfont.svg#PlainBlackWideNormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'IncisedBlackNormal';
+    src: url('../fuentes/PlainBlack/Incised_Black-webfont.eot');
+    src: url('../fuentes/PlainBlack/Incised_Black-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fuentes/PlainBlack/Incised_Black-webfont.woff') format('woff'),
+         url('../fuentes/PlainBlack/Incised_Black-webfont.ttf') format('truetype'),
+         url('../fuentes/PlainBlack/Incised_Black-webfont.svg#IncisedBlackNormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'IncisedBlackWideNormal';
+    src: url('../fuentes/PlainBlack/Incised_Black_Wide-webfont.eot');
+    src: url('../fuentes/PlainBlack/Incised_Black_Wide-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fuentes/PlainBlack/Incised_Black_Wide-webfont.woff') format('woff'),
+         url('../fuentes/PlainBlack/Incised_Black_Wide-webfont.ttf') format('truetype'),
+         url('../fuentes/PlainBlack/Incised_Black_Wide-webfont.svg#IncisedBlackWideNormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'EmbossedBlackNormal';
+    src: url('../fuentes/PlainBlack/Embossed_Black_Normal-webfont.eot');
+    src: url('../fuentes/PlainBlack/Embossed_Black_Normal-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fuentes/PlainBlack/Embossed_Black_Normal-webfont.woff') format('woff'),
+         url('../fuentes/PlainBlack/Embossed_Black_Normal-webfont.ttf') format('truetype'),
+         url('../fuentes/PlainBlack/Embossed_Black_Normal-webfont.svg#EmbossedBlackNormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'EmbossedBlackWideNormal';
+    src: url('../fuentes/PlainBlack/Embossed_Black_Wide-webfont.eot');
+    src: url('../fuentes/PlainBlack/Embossed_Black_Wide-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fuentes/PlainBlack/Embossed_Black_Wide-webfont.woff') format('woff'),
+         url('../fuentes/PlainBlack/Embossed_Black_Wide-webfont.ttf') format('truetype'),
+         url('../fuentes/PlainBlack/Embossed_Black_Wide-webfont.svg#EmbossedBlackWideNormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/*Elementos de neutralidad*/
+header, article, footer, section, nav, aside{
+	display:block;
+	margin:0;
+	padding:0;
+}
+html{
+	background:#FFF;
+	/*Firefox*/
+	background: -moz-linear-gradient(top, #76a68b 0%, #bcd5b0 45%, #bcd5b0 55%, #898c70 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -webkit-linear-gradient(top, #76a68b 0%, #bcd5b0 35%, #bcd5b0 85%, #898c70 100%);
+	/*Chrome* menor a 10 y Safari 4*/
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#76a68b), color-stop(30%,#bcd5b0), color-stop(59%,#bcd5b0), color-stop(100%,#898c70));
+	/* Opera 11.10+ */
+	 background: -o-linear-gradient(top, #76a68b 0%, #bcd5b0 35%, #bcd5b0 85%, #898c70 100%); 
+	margin:0;
+	padding:0;
+}
+body{
+	width:960px;
+	background:#ff6;
+	margin:0 auto;
+	font-family:Verdana, Geneva, sans-serif;
+}
+p, h1, h2, h3{
+	margin:0;
+	padding:0;
+}
+/*Etiquetas estructurales
+Colores:
+Encabezado: #76a68b
+Articulo:   #bcd5b0
+Footer:     #898c70
+*/
+header{
+	height:90px;
+	background:#76a68b;
+	
+}
+article{
+	height:auto;
+	background:#bcd5b0;
+	/* FF3.6+ */
+	background: -moz-radial-gradient(top center, circle cover, #bcd5b0 0%, #bcd5b0 40%,#898c70 100%);
+	/* Chrome10+,Safari5.1+ */
+	background: -webkit-radial-gradient(top center, circle cover, #bcd5b0 0%, #bcd5b0 40%,#898c70 100%);
+	/* Chrome,Safari4+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#41d62a), color-stop(30%,#2989d8), color-stop(59%,#207cca), color-stop(100%,#7db9e8));
+	/* Opera 12+ */
+	background: -o-radial-gradient(top center, circle cover, #bcd5b0 0%, #bcd5b0 40%,#898c70 100%);
+	 
+}
+footer{
+	height:60px;
+	background:#898c70;
+}
+nav{
+	font_size:.7em;
+	color:#f2e3b6;
+	text-align:center;
+	paddin-top:1em;
+}
+/*Estilos de fuente*/
+h1{
+	font-family: 'IncisedBlackNormal';
+	font-size:2.2em;
+	color:#FFF;
+ 	text-align: center;
+}
+h2{
+	font-family: 'EmbossedBlackNormal';
+	font-size:1.8em;
+	color:#f2e3b6;
+ 	text-align: center;
+	padding-top:.2em;
+}
+h3{
+	font-size:.8em;
+	color:#f2e3b6;
+ 	text-align: center;
+}
+	
+p{
+	font-size:1em;
+	padding-top:1em;
+	padding-left:1em;
+	padding-right:1em;
+	line-height:1.2em;
+}
+ul, li{
+	display:inline;
+}
+a{
+	text-decoration:none;
+	font-size:0.8em;
+	color:#f2e3b6;
+	text-align:center;
+}
+/*Clases*/
+.izq{
+	float:left;
+	margin-right:1em;
+}
+.der{
+	float:right;
+	margin-left:1em;
+}
+</style>
+</head>
+
+<body>
+<header><h1>HISTORIA DE GRECIA</h1><h2>ATENEA</h2></header>
+<article><p><img src="../imagenes/atenea.jpg" class="izq"/>Atenea, también conocida como Palas Atenea es, en la mitología griega, la diosa de la guerra, la civilización, la sabiduría, la estrategia, las artes, la justicia y la habilidad.</p>
+<p><img src="../imagenes/atenea4.jpg" class="der"/>Es una de las principales deidades del panteón griego y uno de los doce dioses del Olimpo, Atenea recibe culto en toda la antigua Grecia y en toda su zona de influencia, desde las colonias griegas de Asia Menor a la península Ibérica y el norte de África. Su presencia está atestiguada en las proximidades de la India. De ahí su culto tomó muchas formas, y su figura era divinidades sincréticas con varias regiones de todo el Mediterráneo, se extiende la variedad de formas de culto. Su equivalente aproximado en la mitología romana era Minerva.</p>
+<p>La versión más actual de su mito la pone como hija de Zeus y Metis, nacida completamente armada de la cabeza a los pies. Nunca se casó ni tuvo amantes, se ha encargado de mantener una virginidad perpetua. Fue una guerrera invicta, incluso contra Ares el dios de la guerra. Se convirtió en patrona de varias ciudades, siendo más conocida como la protectora de Atenas y Ática. También era la protectora de varios héroes y otros personajes míticos, que aparece en muchos de los episodios de la mitología. Fue una de las diosas más representadas en el arte griego y su simbolismo tuvo una profunda influencia en el pensamiento griego, sobre todo en los conceptos de justicia, la sabiduría y la función civilizadora de la cultura y las artes, cuyos reflejos se perciben aún hoy en todo Occidente. Su imagen ha sufrido varias transformaciones en los siglos, la incorporación de nuevas características, nuevos contextos y que influyen en la interacción con otras figuras simbólicas, fue utilizada por varios regímenes políticos para legitimar sus principios, incluso ha penetrado en la cultura popular, su identidad de género ha sido fascinante atractivo especial para los escritores relacionados con el feminismo y la psicología y, por último, algunas corrientes religiosas contemporáneas han empezado a darle de nuevo una verdadera adoración.</p>
+<p>&nbsp;</p>
+</article>
+<footer><h3>Todos los derechos reservados por la Máquina de los Dioses &copy;</h3><nav>
+<ul>
+<li><a href="afrodita.html">Afrodita</a>&nbsp;|</li>
+<li><a href="zeus.html">Zeus</a>&nbsp;|</li>
+<li><a href="perseo.html">Perseo</a>&nbsp;|</li>
+<li><a href="ares.html">Ares</a>&nbsp;|</li>
+<li><a href="poseidon.html">Poseidón</a>&nbsp;|</li>
+<li><a href="hercules.html">Hércules</a></li>
+</ul>
+</nav>
+</footer>
+</body>
+</html>
